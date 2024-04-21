@@ -4,12 +4,15 @@ import { todoType } from '@/types/todoType';
 import Todo from './Todo';
 import AddTodo from './AddTodo';
 import { addTodo, deleteTodo, editTodo, toggleTodo } from '@/actions/todoActions';
+import { SignOut } from './sign-out';
+import type { Session } from 'next-auth';
 
 interface Props {
   todos: todoType[];
+  session: Session;
 }
 
-const Todos: FC<Props> = ({ todos }) => {
+const Todos: FC<Props> = ({ todos, session }) => {
   // State to manage the list of todo items
   const [todoItems, setTodoItems] = useState<todoType[]>(todos);
 
@@ -57,6 +60,9 @@ const Todos: FC<Props> = ({ todos }) => {
       </div>
       {/* Adding Todo component for creating new todos */}
       <AddTodo createTodo={createTodo} />
+
+      <SignOut />
+      <pre>{JSON.stringify(session, null, 2)}</pre>
     </main>
   );
 };
