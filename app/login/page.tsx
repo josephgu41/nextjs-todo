@@ -9,7 +9,7 @@ export default async function SignIn() {
     <form
       action={async () => {
         'use server';
-        await signIn('github');
+        await signIn();
       }}
     >
       <button type="submit">Sign in</button>
